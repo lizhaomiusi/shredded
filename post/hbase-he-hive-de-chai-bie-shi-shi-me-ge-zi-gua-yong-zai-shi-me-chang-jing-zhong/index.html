@@ -2,23 +2,18 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>关于 | Gridea</title>
+<title>HBase 和 Hive 的差别是什么，各自适用在什么场景中？ | Gridea</title>
 <link rel="shortcut icon" href="https://github.com/favicon.ico?v=1621919285571">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://github.com/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="关于 | Gridea - Atom Feed" href="https://github.com/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="HBase 和 Hive 的差别是什么，各自适用在什么场景中？ | Gridea - Atom Feed" href="https://github.com/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="
-欢迎来到我的小站呀，很高兴遇见你！🤝
-
-🏠 关于本站
-👨‍💻 博主是谁
-⛹ 兴趣爱好
-📬 联系我呀
-..." />
+    <meta name="description" content="先放结论：Hbase和Hive在大数据架构中处在不同位置，Hbase主要解决实时数据查询问题，Hive主要解决数据处理和计算问题，一般是配合使用。
+一、区别：
+1、Hbase： Hadoop database 的简称，也就是基于Hadoop..." />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -81,46 +76,52 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              关于
+              HBase 和 Hive 的差别是什么，各自适用在什么场景中？
             </h2>
             <div class="post-info">
               <span>
-                2019-01-25
+                2019-12-21
               </span>
               <span>
-                1 min read
+                2 min read
               </span>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
+                <p>先放结论：Hbase和Hive在大数据架构中处在不同位置，Hbase主要解决实时数据查询问题，Hive主要解决数据处理和计算问题，一般是配合使用。<br>
+一、区别：<br>
+1、Hbase： Hadoop database 的简称，也就是基于Hadoop数据库，是一种NoSQL数据库，主要适用于海量明细数据（十亿、百亿）的随机实时查询，如日志明细、交易清单、轨迹行为等。<br>
+2、Hive：Hive是Hadoop数据仓库，严格来说，不是数据库，主要是让开发人员能够通过SQL来计算和处理HDFS上的结构化数据，适用于离线的批量数据计算。<br>
+.通过元数据来描述Hdfs上的结构化文本数据，通俗点来说，就是定义一张表来描述HDFS上的结构化文本，包括各列数据名称，数据类型是什么等，方便我们处理数据，当前很多SQL ON Hadoop的计算引擎均用的是hive的元数据，如Spark SQL、Impala等；<br>
+.基于第一点，通过SQL来处理和计算HDFS的数据，Hive会将SQL翻译为Mapreduce来处理数据；</p>
+<p>二、关系</p>
+<p>在大数据架构中，Hive和HBase是协作关系，数据流一般如下图：</p>
+<p>1、通过ETL工具将数据源抽取到HDFS存储；<br>
+2、通过Hive清洗、处理和计算原始数据；<br>
+3、HIve清洗处理后的结果，如果是面向海量数据随机查询场景的可存入Hbase<br>
+4、数据应用从HBase查询数据；</p>
+<figure data-type="image" tabindex="1"><img src="https://github.com/post-images/1576903940997.png" alt="" loading="lazy"></figure>
+<p>https://www.zhihu.com/question/21677041/answer/185664626</p>
 
               </div>
               <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%8D%9A%E4%B8%BB%E6%98%AF%E8%B0%81">👨‍💻 博主是谁</a></li>
-<li><a href="#%E5%85%B4%E8%B6%A3%E7%88%B1%E5%A5%BD">⛹ 兴趣爱好</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
-</ul>
-</li>
-</ul>
-
+                
               </div>
             </div>
           </article>
         </div>
 
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://github.com/post/linux-xia-pi-liang-ti-huan-wen-jian-nei-rong-fang-fa/">
+              <h3 class="post-title">
+                Linux下批量替换文件内容方法
+              </h3>
+            </a>
+          </div>
         
 
         

@@ -1,0 +1,238 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>vim 批量替换命令 | Gridea</title>
+<link rel="shortcut icon" href="https://github.com/favicon.ico?v=1621919285571">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://github.com/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="vim 批量替换命令 | Gridea - Atom Feed" href="https://github.com/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="语法为
+:[addr]s/源字符串/目的字符串/[option]
+全局替换命令为：
+:%s/源字符串/目的字符串/g
+[addr] 表示检索范围，省略时表示当前行。
+“1,20” ：表示从第1行到20行；
+“%” ：表示整个文件，同“1,”..." />
+    <meta name="keywords" content="vim" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://github.com">
+  <img class="avatar" src="https://github.com/images/avatar.png?v=1621919285571" alt="">
+  </a>
+  <h1 class="site-title">
+    Gridea
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              vim 批量替换命令
+            </h2>
+            <div class="post-info">
+              <span>
+                2019-07-16
+              </span>
+              <span>
+                2 min read
+              </span>
+              
+                <a href="https://github.com/tag/JUSp9Qqno/" class="post-tag">
+                  # vim
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>语法为<br>
+:[addr]s/源字符串/目的字符串/[option]</p>
+<p>全局替换命令为：<br>
+:%s/源字符串/目的字符串/g</p>
+<p>[addr] 表示检索范围，省略时表示当前行。<br>
+“1,20” ：表示从第1行到20行；<br>
+“%” ：表示整个文件，同“1,<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">”</mi><mi mathvariant="normal">；</mi><mi mathvariant="normal">“</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo></mrow><annotation encoding="application/x-tex">”；
+“. ,</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord">”</span><span class="mord cjk_fallback">；</span><span class="mord">“</span><span class="mord">.</span><span class="mpunct">,</span></span></span></span>” ：从当前行到文件尾；</p>
+<p>s : 表示替换操作</p>
+<p>[option] : 表示操作类型<br>
+g 表示全局替换;<br>
+c 表示进行确认<br>
+p 表示替代结果逐行显示（Ctrl + L恢复屏幕）;<br>
+省略option时仅对每行第一个匹配串进行替换;<br>
+如果在源字符串和目的字符串中出现特殊字符，需要用”\”转义 如 \t</p>
+<h1 id="下面是一些例子">下面是一些例子：</h1>
+<p>#将That or this 换成 This or that<br>
+:%s/(That) or (this)/\u\2 or \l\1/</p>
+<p>=======================================================<br>
+#将句尾的child换成children<br>
+:%s/child([ ,.;!:?])/children\1/g</p>
+<p>=======================================================<br>
+#将mgi/r/abox换成mgi/r/asquare<br>
+:g/mg([ira])box/s//mg//my\1square/g    &lt;=&gt;  :g/mg[ira]box/s/box/square/g</p>
+<p>=======================================================<br>
+#将多个空格换成一个空格<br>
+:%s/  */ /g</p>
+<p>=======================================================<br>
+#使用空格替换句号或者冒号后面的一个或者多个空格<br>
+:%s/([:.])  */\1 /g</p>
+<p>=======================================================<br>
+#删除所有空行<br>
+:g/^$/d</p>
+<p>=======================================================<br>
+#删除所有的空白行和空行<br>
+:g/<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>[  ]*$/d</p>
+<p>=======================================================<br>
+#在每行的开始插入两个空白<br>
+:%s/^/&gt;  /</p>
+<p>=======================================================<br>
+#在接下来的6行末尾加入.<br>
+:.,5/$/./</p>
+<p>=======================================================<br>
+#颠倒文件的行序<br>
+:g/.*/m0O  &lt;=&gt; :g/^/m0O</p>
+<p>=======================================================<br>
+#寻找不是数字的开始行,并将其移到文件尾部<br>
+:g!/<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup>/m$ &lt;=&gt; g/<sup>[</sup>0-9]/m$</p>
+<p>=======================================================<br>
+#将文件的第12到17行内容复制10词放到当前文件的尾部<br>
+:1,10g/^/12,17t$</p>
+<pre><code class="language-重复次数的作用">
+=======================================================
+#将chapter开始行下面的第二行的内容写道begin文件中
+:g/^chapter/.+2w&gt;&gt;begin
+
+=======================================================
+:/^part2/,/^part3/g/^chapter/.+2w&gt;&gt;begin
+
+=======================================================
+:/^part2/,/^part3/g/^chapter/.+2w&gt;&gt;begin|+t$</code></pre>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>   <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p>0-9 <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#%E4%B8%8B%E9%9D%A2%E6%98%AF%E4%B8%80%E4%BA%9B%E4%BE%8B%E5%AD%90">下面是一些例子：</a></li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://github.com/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

@@ -2,23 +2,27 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>关于 | Gridea</title>
+<title>vim 缩进 | Gridea</title>
 <link rel="shortcut icon" href="https://github.com/favicon.ico?v=1621919285571">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://github.com/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="关于 | Gridea - Atom Feed" href="https://github.com/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="vim 缩进 | Gridea - Atom Feed" href="https://github.com/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="
-欢迎来到我的小站呀，很高兴遇见你！🤝
+    <meta name="description" content="normal模式下  批量缩进
+1.”shift+v“选中行 或 按住V+方向键
+2.使用&quot;==&quot;进行缩进
+normal 模式下：
 
-🏠 关于本站
-👨‍💻 博主是谁
-⛹ 兴趣爱好
-📬 联系我呀
-..." />
+
+当前行增加缩进
+&lt;&lt;  当前行减少缩进
+insert模式下：
+
+
+CTR..." />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -81,46 +85,74 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              关于
+              vim 缩进
             </h2>
             <div class="post-info">
               <span>
-                2019-01-25
+                2019-07-16
               </span>
               <span>
-                1 min read
+                3 min read
               </span>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
+                <p>normal模式下  批量缩进<br>
+1.”shift+v“选中行 或 按住V+方向键<br>
+2.使用&quot;==&quot;进行缩进</p>
+<p>normal 模式下：</p>
+<blockquote>
+<blockquote>
+<p>当前行增加缩进<br>
+&lt;&lt;  当前行减少缩进<br>
+insert模式下：</p>
 </blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
+</blockquote>
+<p>CTRL+SHIFT+T：当前行增加缩进<br>
+CTRL+SHIFT+D：当前行减少缩进<br>
+默认vim的缩进宽度为8个空格，修改缩进的宽度：:set shiftwidth=4，具体什么意思，看下面的详细解释。</p>
+<p>与缩进相关的参数有shiftwidth、tabstop、softtabstop、expandtab。</p>
+<p>shiftwidth  reindent 操作（&lt;&lt;和&gt;&gt;）时缩进的列数（这里的一列相当于一个空格）<br>
+tabstop     一个tab键所占的列数，linux 内核代码建议每个tab占用8列<br>
+softtabstop 敲入tab键时实际占有的列数。<br>
+expandtab   输入tab时自动将其转化为空格<br>
+softtabstop大于tabstop时，且没有设置expandtab时，例如：softtabstop=12，tabstop=8，那么当输入一个tab时（softtabstop：实际占用的是12列），最后会变成一个tab（tabstop）加4个空格（8+4），输入两个tab（2个softtabstop：24列）会变成3个tab（tabstop），也就是说vim或用tabstop+空格来表示，最终你能看到的缩进的列数一定是softtabstop*按的tab键次数。（ps：:set list 可以查看tab符号）</p>
+<p>softtabstop小于tabstop且没有设置expandtab时，如果softtabstop=4，tabstop=8，输入一个tab（softtabstop），会变成4个空格（因为不够用一个tabstop表示），输入两个tab会变成一个tab（8列）。</p>
+<p>如果softtabstop等于tabstop，而且expandtab没有设置，softtabstop与tabstop就没什么区别了。</p>
+<p>如果设置的expandtab，输入一个tab，将被展开成softtabstop值个空格，如果softtabstop=4，那么一个tab就会被替换成4个空格。</p>
+<p>设置expandtab:</p>
+<p>:set expandtab<br>
+取消expandtab:</p>
+<p>:set noexpandtab<br>
+查看参数值：</p>
+<p>:set $arg（这里的arg是变量，值就是上面的那些参数），比如：:set softtabstop<br>
+自动缩进</p>
+<p>:set autoindent   回车后自动缩进<br>
+通常Java的配置方式是：</p>
+<p>:set softtabstop=4 shiftwidth=4 expandtab<br>
+Linux kernel的配置方式：</p>
+<p>:set tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab<br>
+以后的章节我会来一个完整的Python配置。</p>
 
               </div>
               <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%8D%9A%E4%B8%BB%E6%98%AF%E8%B0%81">👨‍💻 博主是谁</a></li>
-<li><a href="#%E5%85%B4%E8%B6%A3%E7%88%B1%E5%A5%BD">⛹ 兴趣爱好</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
-</ul>
-</li>
-</ul>
-
+                
               </div>
             </div>
           </article>
         </div>
 
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://github.com/post/vim-pi-liang-ti-huan/">
+              <h3 class="post-title">
+                vim 批量替换命令
+              </h3>
+            </a>
+          </div>
         
 
         

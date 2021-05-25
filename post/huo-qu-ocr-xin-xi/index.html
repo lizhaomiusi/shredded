@@ -1,96 +1,99 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://github.com</id>
-    <title>Gridea</title>
-    <updated>2021-05-25T05:08:09.635Z</updated>
-    <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://github.com"/>
-    <link rel="self" href="https://github.com/atom.xml"/>
-    <subtitle>温故而知新</subtitle>
-    <logo>https://github.com/images/avatar.png</logo>
-    <icon>https://github.com/favicon.ico</icon>
-    <rights>All rights reserved 2021, Gridea</rights>
-    <entry>
-        <title type="html"><![CDATA[Redis 查看所有 key 的 value 值所占内存大小]]></title>
-        <id>https://github.com/post/redis-cha-kan-suo-you-key-de-value-zhi-suo-zhan-nei-cun-da-xiao/</id>
-        <link href="https://github.com/post/redis-cha-kan-suo-you-key-de-value-zhi-suo-zhan-nei-cun-da-xiao/">
-        </link>
-        <updated>2021-04-07T03:17:16.000Z</updated>
-        <content type="html"><![CDATA[<p>redis 虽好，却是个吃内存兽，因此在写入 redis 数据时，应该避免写入无用的数据，浪费内存。</p>
-<p>如果我们要分析哪些 key 占用了大量的存储空间，就需要有工具辅助对所有的 value 所点空间进行排序，如此才能有的放矢进行优化</p>
-<p>redis-rdb-tools 可以将所有 key 对应的 value 大小用 csv 格式导出</p>
-<p>安装如下：</p>
-<p>$ pip install rdbtools python-lzf<br>
-$ git clone https://github.com/sripathikrishnan/redis-rdb-tools<br>
-$ cd redis-rdb-tools<br>
-$ sudo python setup.py install<br>
-接下来找到 redis 的 dump.rdb 位置</p>
-<p>首先定位到 redis.conf 位置</p>
-<p>$ whereis redis.conf<br>
-redis: /etc/redis.conf<br>
-$ cat /etc/redis.conf | grep dir | grep redis<br>
-dir /var/lib/redis<br>
-$ cat /etc/redis.conf | grep dump.rdb<br>
-dbfilename dump.rdb<br>
-综上，得知其路径为：/var/lib/redis/dump.rdb</p>
-<p>按内存值导出 csv</p>
-<p>$ rdb -c memory /var/lib/redis/dump.rdb &gt; /tmp/redis.csv</p>
-<p>https://github.com/sripathikrishnan/redis-rdb-tools</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[slow-php-fpm log]]></title>
-        <id>https://github.com/post/slow-php-fpm-log/</id>
-        <link href="https://github.com/post/slow-php-fpm-log/">
-        </link>
-        <updated>2021-01-20T04:04:00.000Z</updated>
-        <content type="html"><![CDATA[<p>cat   /www/server/php/70/var/log/slow.log |grep 'controllers'|grep -v Base|awk -F'[)]' '{print $2}'|sort|uniq &gt;/home/slow-api-<code>hostname</code>.txt</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[php-fpm内存溢出]]></title>
-        <id>https://github.com/post/php-fpm-nei-cun-yi-chu/</id>
-        <link href="https://github.com/post/php-fpm-nei-cun-yi-chu/">
-        </link>
-        <updated>2020-12-07T03:48:09.000Z</updated>
-        <content type="html"><![CDATA[<p>ps --no-headers -o &quot;rss,cmd&quot; -C php-fpm | awk '{ sum+=$1 } END { printf (&quot;%d%s\n&quot;, sum/NR/1024,&quot;M&quot;) }'</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Rabbitmq重启服务器用户丢失解决办法]]></title>
-        <id>https://github.com/post/rabbitmq-chong-qi-fu-wu-qi-yong-hu-diu-shi-jie-jue-ban-fa/</id>
-        <link href="https://github.com/post/rabbitmq-chong-qi-fu-wu-qi-yong-hu-diu-shi-jie-jue-ban-fa/">
-        </link>
-        <updated>2020-11-17T03:19:17.000Z</updated>
-        <content type="html"><![CDATA[<p>https://www.cnblogs.com/minseo/p/10757830.html</p>
-<p>Rabbitmq创建的用户在服务器重启后会丢失需要重新创建，下面设置重启用户保留</p>
-<p>首先查看用户</p>
-<pre><code>[root@test-rabbitmq ~]# rabbitmqctl list_users
-Listing users ...
-admin   [administrator]
-guest   [administrator]
-</code></pre>
-<p>修改配置文件</p>
-<pre><code>/etc/rabbitmq/rabbitmq-env.conf
-　　
-</code></pre>
-<pre><code>NODENAME=rabbit@test-rabitmq 
-</code></pre>
-<p>PS：红色部分保持不变，后面为主机名hostname</p>
-<p>添加hosts</p>
-<p>/etc/hosts<br>
-增加一行，前面为Ip后面为主机名</p>
-<p>127.0.0.1 test-rabitmq<br>
-重启服务器，用户保留</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[获取ocr信息]]></title>
-        <id>https://github.com/post/huo-qu-ocr-xin-xi/</id>
-        <link href="https://github.com/post/huo-qu-ocr-xin-xi/">
-        </link>
-        <updated>2020-11-10T09:00:24.000Z</updated>
-        <content type="html"><![CDATA[<p>SELECT<br>
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>获取ocr信息 | Gridea</title>
+<link rel="shortcut icon" href="https://github.com/favicon.ico?v=1621919285571">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://github.com/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="获取ocr信息 | Gridea - Atom Feed" href="https://github.com/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="SELECT
+a.order_no,
+a.partner_order_no,
+a.user_name,
+a.user_idcard,
+b.detail_info -&gt; '.ocrinfo′ASocrinfo,a.STATUSFROMc..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://github.com">
+  <img class="avatar" src="https://github.com/images/avatar.png?v=1621919285571" alt="">
+  </a>
+  <h1 class="site-title">
+    Gridea
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              获取ocr信息
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-11-10
+              </span>
+              <span>
+                1 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>SELECT<br>
 a.order_no,<br>
 a.partner_order_no,<br>
 a.user_name,<br>
@@ -108,174 +111,77 @@ WHERE
 -- AND b.detail_info -&gt; &#x27;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.946332em;vertical-align:-0.19444em;"></span><span class="mord">.</span><span class="mord mathdefault">o</span><span class="mord mathdefault">c</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord"><span class="mord mathdefault">o</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mord mathdefault">A</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault">o</span><span class="mord mathdefault">c</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">o</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">a</span><span class="mord">.</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault">A</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.10903em;">U</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">c</span><span class="mord mathdefault">a</span><span class="mord mathdefault">s</span><span class="mord"><span class="mord mathdefault">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">o</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord">.</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">s</span><span class="mord mathdefault">a</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.09618em;">J</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault">c</span><span class="mord mathdefault">a</span><span class="mord mathdefault">s</span><span class="mord"><span class="mord mathdefault">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">o</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord">.</span><span class="mord mathdefault">a</span><span class="mord mathdefault">p</span><span class="mord mathdefault">p</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">o</span><span class="mord mathdefault">b</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault">b</span><span class="mord">.</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord mathdefault">a</span><span class="mord">.</span><span class="mord mathdefault">i</span><span class="mord mathdefault">d</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.09618em;">J</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault">c</span><span class="mord mathdefault">a</span><span class="mord mathdefault">s</span><span class="mord"><span class="mord mathdefault">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord">.</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault">a</span><span class="mord mathdefault">n</span><span class="mord mathdefault">c</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault">a</span><span class="mord">.</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">o</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.980548em;vertical-align:-0.286108em;"></span><span class="mord mathdefault">c</span><span class="mord">.</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">o</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.09618em;">J</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault">c</span><span class="mord mathdefault">a</span><span class="mord mathdefault">s</span><span class="mord"><span class="mord mathdefault">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord">.</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord mathdefault">p</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mord mathdefault">n</span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">a</span><span class="mord mathdefault">n</span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault">c</span><span class="mord">.</span><span class="mord mathdefault">i</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">d</span><span class="mord">.</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault">a</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord mathdefault">a</span><span class="mord">.</span><span class="mord mathdefault">c</span><span class="mord mathdefault">o</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord"><span class="mord mathdefault">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord">1</span><span class="mord">6</span><span class="mord">0</span><span class="mord">4</span><span class="mord">6</span><span class="mord">8</span><span class="mord">2</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mord mathdefault">A</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord mathdefault">d</span><span class="mord">.</span><span class="mord mathdefault">d</span><span class="mord mathdefault">u</span><span class="mord"><span class="mord mathdefault">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mord">6</span><span class="mord">0</span><span class="mord">4</span><span class="mord">6</span><span class="mord">8</span><span class="mord">2</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.946332em;vertical-align:-0.19444em;"></span><span class="mord">−</span><span class="mord mathdefault">A</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord mathdefault">b</span><span class="mord">.</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span><span class="mord mathdefault">t</span><span class="mord mathdefault">a</span><span class="mord mathdefault">i</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.01968em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">o</span><span class="mclose">!</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel">=</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.946332em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">A</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord mathdefault">b</span><span class="mord">.</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span><span class="mord mathdefault">t</span><span class="mord mathdefault">a</span><span class="mord mathdefault">i</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.01968em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">o</span><span class="mord">−</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel">&gt;</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span>.ocr_info' != ''</p>
 <pre><code>AND a.`status` &gt;= 90 
 AND d.type &gt; 1</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[kernel: TCP: time wait bucket table overflow 问题分析和解决]]></title>
-        <id>https://github.com/post/tcp-wait/</id>
-        <link href="https://github.com/post/tcp-wait/">
-        </link>
-        <updated>2020-09-28T04:22:56.000Z</updated>
-        <content type="html"><![CDATA[<p>https://www.cnblogs.com/dadonggg/p/8778318.html</p>
-<p>https://blog.csdn.net/jack1liu/article/details/100053131</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[PHP coredump]]></title>
-        <id>https://github.com/post/php-coredump/</id>
-        <link href="https://github.com/post/php-coredump/">
-        </link>
-        <updated>2020-07-31T03:42:49.000Z</updated>
-        <content type="html"><![CDATA[<p>一般情况下，Linux默认core dumps是关闭状态。我们可以将其打开并且重定向到我们指定的文件。</p>
-<pre><code>$ echo '/tmp/coredump-%e.%p' &gt; /proc/sys/kernel/core_pattern
-</code></pre>
-<p>core dumps文件支持变量：</p>
-<pre><code>%%  a single % character
-%c  core file size soft resource limit of crashing process (since Linux 2.6.24)
-%d  dump mode—same as value returned by prctl(2) PR_GET_DUMPABLE
-(since Linux 3.7)
-%e  executable filename (without path prefix)
-%E  pathname of executable, with slashes ('/') replaced by
-exclamation marks ('!') (since Linux 3.0).
-%g  (numeric) real GID of dumped process
-%h  hostname (same as nodename returned by uname(2))
-%p  PID of dumped process, as seen in the PID namespace in which
-the process resides
-%P  PID of dumped process, as seen in the initial PID namespace
-(since Linux 3.12)
-%s  number of signal causing dump
-%t  time of dump, expressed as seconds since the Epoch,
-1970-01-01 00:00:00 +0000 (UTC)
-%u  (numeric) real UID of dumped process
-</code></pre>
-<p>这个例子中，我们把错误文件重定向到/tmp目录下。<br>
-配置php-fpm支持core dumps<br>
-为了让php-fpm支持core dumps，我们需要打开php-fpm连接池的rlimit_core配置，在配置文件中设置。</p>
-<pre><code>rlimit_core = unlimited
-</code></pre>
-<p>重启php-fpm进程，当SIGSEGV信号量产生时，将会在你指定的core dumps目录产生指定的文件：</p>
-<pre><code>$ ls /tmp/coredump*
--rw------- 1 user group 220M /tmp/coredump-php-fpm.2393
-</code></pre>
-<p>使用gdb读取core dumps文件<br>
-首先，确认你的机器中正确安装了gdb调试工具（yum install gdb）。然后，你将使用gdb $program-path $coredump-path这样的命令格式调试。由于我们的程序运行在php-fpm，我们将使用以下的命令调试：</p>
-<pre><code>$ gdb /usr/local/services/php7/sbin/php-fpm core.6054
-GNU gdb (GDB) Red Hat Enterprise Linux (7.2-60.el6_4.1)
-Copyright (C) 2010 Free Software Foundation, Inc.
-License GPLv3+: GNU GPL version 3 or later &lt;http://g
-...
 
-Core was generated by `php-fpm: pool www                                                             '.
-Program terminated with signal 11, Segmentation fault.
-#0  0x00007f54017dc76f in memcpy () from /lib64/libc.so.6
-...
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
+        </div>
 
-(gdb) bt
-#0  0x00007f54017dc76f in memcpy () from /lib64/libc.so.6
-#1  0x00007f53fdf96443 in zend_string_init (execute_data=0x7f53fe416fc0)
-at /usr/local/services/php7/include/php/Zend/zend_string.h:159
-#2  hp_execute_ex (execute_data=0x7f53fe416fc0)
-at /usr/local/src/xhprof-php7/extension/xhprof.c:1476
-#3  0x00000000008c28b0 in ZEND_DO_FCALL_SPEC_HANDLER ()
-at /data/software/php-7.0.6/Zend/zend_vm_execute.h:800
-#4  0x00000000008851cb in execute_ex (ex=Unhandled dwarf expression opcode 0xf3
-)
-at /data/software/php-7.0.6/Zend/zend_vm_execute.h:414
-</code></pre>
-<p>bt命令将会显示core dumps文件的调用栈。到此为止，我们定位到问题出现在/usr/local/src/xhprof-php7/extension/xhprof.c文件在调用memcpy()方法时，出现内存段错误。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[利用strace追踪php-fpm多个进程]]></title>
-        <id>https://github.com/post/li-yong-strace-zhui-zong-php-fpm-duo-ge-jin-cheng/</id>
-        <link href="https://github.com/post/li-yong-strace-zhui-zong-php-fpm-duo-ge-jin-cheng/">
-        </link>
-        <updated>2020-07-31T03:12:41.000Z</updated>
-        <content type="html"><![CDATA[<p>闲话不多说，先贴一下strace常用的选项备用</p>
-<pre><code>-c 统计每一系统调用的所执行的时间,次数和出错的次数等.
--d 输出strace关于标准错误的调试信息.
--f 跟踪由fork调用所产生的子进程.
--ff 如果提供-o filename,则所有进程的跟踪结果输出到相应的filename.pid中,pid是各进程的进程号.
--F 尝试跟踪vfork调用.在-f时,vfork不被跟踪.
--h 输出简要的帮助信息.
--i 输出系统调用的入口指针.
--q 禁止输出关于脱离的消息.
--r 打印出相对时间关于,,每一个系统调用.
--t 在输出中的每一行前加上时间信息.
--tt 在输出中的每一行前加上时间信息,微秒级.
--ttt 微秒级输出,以秒了表示时间.
--T 显示每一调用所耗的时间.
--v 输出所有的系统调用.一些调用关于环境变量,状态,输入输出等调用由于使用频繁,默认不输出.
--V 输出strace的版本信息.
--x 以十六进制形式输出非标准字符串
--xx 所有字符串以十六进制形式输出.
--a column 设置返回值的输出位置.默认 为40.
--e expr 指定一个表达式,用来控制如何跟踪.格式：[qualifier=][!]value1[,value2]...
-qualifier只能是 trace,abbrev,verbose,raw,signal,read,write其中之一.value是用来限定的符号或数字.默认的 qualifier是 trace.感叹号是否定符号.例如:-eopen等价于 -e trace=open,表示只跟踪open调用.而-etrace!=open 表示跟踪除了open以外的其他调用.有两个特殊的符号 all 和 none. 注意有些shell使用!来执行历史记录里的命令,所以要使用\\.
--e trace=set 只跟踪指定的系统 调用.例如:-e trace=open,close,rean,write表示只跟踪这四个系统调用.默认的为set=all.
--e trace=file 只跟踪有关文件操作的系统调用.
--e trace=process 只跟踪有关进程控制的系统调用.
--e trace=network 跟踪与网络有关的所有系统调用.
--e strace=signal 跟踪所有与系统信号有关的 系统调用
--e trace=ipc 跟踪所有与进程通讯有关的系统调用
--e abbrev=set 设定strace输出的系统调用的结果集.-v 等与 abbrev=none.默认为abbrev=all.
--e raw=set 将指定的系统调用的参数以十六进制显示.
--e signal=set 指定跟踪的系统信号.默认为all.如 signal=!SIGIO(或者signal=!io),表示不跟踪SIGIO信号.
--e read=set 输出从指定文件中读出 的数据.例如: -e read=3,5
--e write=set 输出写入到指定文件中的数据.
--o filename 将strace的输出写入文件filename
--p pid 跟踪指定的进程pid.
--s strsize 指定输出的字符串的最大长度.默认为32.文件名一直全部输出.
--u username 以username的UID和GID执行被跟踪的命令
-</code></pre>
-<p>执行</p>
-<pre><code>ps -ef|grep php-fpm|awk '{print &quot; -p &quot; $2&quot; -s 10000 -o /tmp/debug/strace_&quot;$2&quot;.log&quot;}'|xargs strace
-</code></pre>
-<p>#监控所有的子进程pid,并写入相应的trace.log</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[PHP FPM 开启 Core Dump]]></title>
-        <id>https://github.com/post/php-fpm-kai-qi-core-dump/</id>
-        <link href="https://github.com/post/php-fpm-kai-qi-core-dump/">
-        </link>
-        <updated>2020-07-28T08:40:42.000Z</updated>
-        <content type="html"><![CDATA[<p>开启<br>
-配置输出路径<br>
-<code>echo &quot;/tmp/core.%e.%p.%t&quot; &gt; /proc/sys/kernel/core_pattern</code><br>
-FPM 配置</p>
-<h1 id="php-fpmconf">php-fpm.conf</h1>
-<p><code>rlimit_core = unlimited</code><br>
-重启FPM</p>
-<h1 id="根据实际情况使用命令">根据实际情况使用命令</h1>
-<p><code>/etc/init.d/php-fpm reload</code><br>
-调试配置是否正确（慎用，强制sigsegv信号退出）</p>
-<h1 id="查看pid">查看pid</h1>
-<p><code>ps aux | grep php-fpm</code></p>
-<h1 id="挑选一个worker杀掉">挑选一个worker杀掉</h1>
-<p><code>kill -s SEGV &lt;your-pid&gt;</code></p>
-<h1 id="查看生成的core-dump文件">查看生成的core dump文件</h1>
-<p><code>ll /tmp/core.*</code><br>
-调试<br>
-core dump 文件使用方法<br>
-参考<br>
-php core dump<br>
-linux core dump<br>
-core dump 文件使用方法</p>
-<p>https://www.jianshu.com/p/9ce8baf426aa</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[PHP execution timed out (109.017219 sec), terminating]]></title>
-        <id>https://github.com/post/php-execution-timed-out-109017219-sec-terminating/</id>
-        <link href="https://github.com/post/php-execution-timed-out-109017219-sec-terminating/">
-        </link>
-        <updated>2020-07-28T08:22:41.000Z</updated>
-        <content type="html"><![CDATA[<p>php.ini中的max_execution_time值 php-fpm.conf中的request_terminate_timeout值<br>
-这两项都是用来配置PHP脚本的最大执行时间。超时时php-fpm会终止脚本的执行，同时还会终止执行脚本的Worker进程。<br>
-文章开头 php-fpm child 3578被terminate后重新生成了新的Worker进程31629，所以nginx发现与自己通信的连接断了，就自然会返回502错误给客户端。客户端需再次发起请求重新建立新的连接，表象是刷新下浏览器即重新发起请求<br>
-适当调大 php-fpm.conf中的request_terminate_timeout，让PHP脚本不会因为执行时间长而被终止从而与nginx激活连接丢失。<br>
-request_terminate_timeout优先级高于max_execution_time，不想改全局的php.ini，只改php-fpm的配置就可以了。</p>
-]]></content>
-    </entry>
-</feed>
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://github.com/post/tcp-wait/">
+              <h3 class="post-title">
+                kernel: TCP: time wait bucket table overflow 问题分析和解决
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://github.com/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

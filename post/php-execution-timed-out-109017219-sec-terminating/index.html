@@ -2,23 +2,17 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>关于 | Gridea</title>
+<title>PHP execution timed out (109.017219 sec), terminating | Gridea</title>
 <link rel="shortcut icon" href="https://github.com/favicon.ico?v=1621919285571">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://github.com/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="关于 | Gridea - Atom Feed" href="https://github.com/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="PHP execution timed out (109.017219 sec), terminating | Gridea - Atom Feed" href="https://github.com/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="
-欢迎来到我的小站呀，很高兴遇见你！🤝
-
-🏠 关于本站
-👨‍💻 博主是谁
-⛹ 兴趣爱好
-📬 联系我呀
-..." />
+    <meta name="description" content="php.ini中的max_execution_time值 php-fpm.conf中的request_terminate_timeout值
+这两项都是用来配置PHP脚本的最大执行时间。超时时php-fpm会终止脚本的执行，同时还会终止执行脚..." />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -81,11 +75,11 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              关于
+              PHP execution timed out (109.017219 sec), terminating
             </h2>
             <div class="post-info">
               <span>
-                2019-01-25
+                2020-07-28
               </span>
               <span>
                 1 min read
@@ -95,32 +89,29 @@
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
+                <p>php.ini中的max_execution_time值 php-fpm.conf中的request_terminate_timeout值<br>
+这两项都是用来配置PHP脚本的最大执行时间。超时时php-fpm会终止脚本的执行，同时还会终止执行脚本的Worker进程。<br>
+文章开头 php-fpm child 3578被terminate后重新生成了新的Worker进程31629，所以nginx发现与自己通信的连接断了，就自然会返回502错误给客户端。客户端需再次发起请求重新建立新的连接，表象是刷新下浏览器即重新发起请求<br>
+适当调大 php-fpm.conf中的request_terminate_timeout，让PHP脚本不会因为执行时间长而被终止从而与nginx激活连接丢失。<br>
+request_terminate_timeout优先级高于max_execution_time，不想改全局的php.ini，只改php-fpm的配置就可以了。</p>
 
               </div>
               <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%8D%9A%E4%B8%BB%E6%98%AF%E8%B0%81">👨‍💻 博主是谁</a></li>
-<li><a href="#%E5%85%B4%E8%B6%A3%E7%88%B1%E5%A5%BD">⛹ 兴趣爱好</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
-</ul>
-</li>
-</ul>
-
+                
               </div>
             </div>
           </article>
         </div>
 
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://github.com/post/strace/">
+              <h3 class="post-title">
+                strace
+              </h3>
+            </a>
+          </div>
         
 
         

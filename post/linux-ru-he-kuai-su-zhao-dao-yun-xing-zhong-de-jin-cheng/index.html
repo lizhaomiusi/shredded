@@ -2,23 +2,19 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>关于 | Gridea</title>
+<title>Linux 如何快速找到运行中的进程 | Gridea</title>
 <link rel="shortcut icon" href="https://github.com/favicon.ico?v=1621919285571">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://github.com/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="关于 | Gridea - Atom Feed" href="https://github.com/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="Linux 如何快速找到运行中的进程 | Gridea - Atom Feed" href="https://github.com/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="
-欢迎来到我的小站呀，很高兴遇见你！🤝
-
-🏠 关于本站
-👨‍💻 博主是谁
-⛹ 兴趣爱好
-📬 联系我呀
-..." />
+    <meta name="description" content="日常运维过程中，如果遇到我们不熟悉的环境，如何以最快的速度查找到进程的目录在哪里，特别是有多个版本的软件，可以使用这个方法
+如截图，运行的nginx 进程，乍看一下，根本不知道nginx 具体在哪个目录
+[root]top
+1574 roo..." />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -81,46 +77,50 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              关于
+              Linux 如何快速找到运行中的进程
             </h2>
             <div class="post-info">
               <span>
-                2019-01-25
+                2019-08-21
               </span>
               <span>
-                1 min read
+                2 min read
               </span>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
+                <p>日常运维过程中，如果遇到我们不熟悉的环境，如何以最快的速度查找到进程的目录在哪里，特别是有多个版本的软件，可以使用这个方法</p>
+<p>如截图，运行的nginx 进程，乍看一下，根本不知道nginx 具体在哪个目录<br>
+[root]top<br>
+1574 root      20   0  163m 7536  980 S  0.3  0.2 106:12.16 redis-server<br>
+2203 mysql     20   0 1742m 598m 6752 S  0.3 15.1  86:17.07 mysqld<br>
+3223 root      20   0  222m 8000 1936 S  0.3  0.2  32:39.90 php<br>
+15872 root      20   0 3566m 543m 6740 S  0.3 13.7   7:29.35 java<br>
+30722 root       0 -20  128m  11m 4672 S  0.3  0.3 189:06.55 AliYunDun</p>
+<p>如何第一时间找到对应进程的具体位置呢，上图nginx pid(进程号) 是11281<br>
+[root] ls -al  /proc/1574/exe<br>
+lrwxrwxrwx 1 root root 0 Aug 21 17:44 /proc/1574/exe -&gt; /www/server/redis/src/redis-server</p>
+<p>我们使用 命令 ls -l /proc/11281/exe 就能显示进程具体位置 如下截图</p>
 
               </div>
               <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%8D%9A%E4%B8%BB%E6%98%AF%E8%B0%81">👨‍💻 博主是谁</a></li>
-<li><a href="#%E5%85%B4%E8%B6%A3%E7%88%B1%E5%A5%BD">⛹ 兴趣爱好</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
-</ul>
-</li>
-</ul>
-
+                
               </div>
             </div>
           </article>
         </div>
 
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://github.com/post/linux-xia-cha-zhao-zhi-ding-ming-cheng-de-jin-cheng-bing-xian-shi-xiang-xi-xin-xi/">
+              <h3 class="post-title">
+                Linux下查找指定名称的进程并显示详细信息
+              </h3>
+            </a>
+          </div>
         
 
         

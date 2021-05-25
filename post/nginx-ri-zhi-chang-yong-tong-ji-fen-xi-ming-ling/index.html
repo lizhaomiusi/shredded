@@ -1,0 +1,213 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Nginx日志常用统计分析命令 | Gridea</title>
+<link rel="shortcut icon" href="https://github.com/favicon.ico?v=1621919285571">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://github.com/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Nginx日志常用统计分析命令 | Gridea - Atom Feed" href="https://github.com/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="IP相关统计
+统计IP访问量（独立ip访问数量）
+awk '{print $1}' access.log | sort -n | uniq | wc -l
+查看某一时间段的IP访问量(4-5点)
+grep &quot;07/Apr/2017..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://github.com">
+  <img class="avatar" src="https://github.com/images/avatar.png?v=1621919285571" alt="">
+  </a>
+  <h1 class="site-title">
+    Gridea
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Nginx日志常用统计分析命令
+            </h2>
+            <div class="post-info">
+              <span>
+                2019-08-22
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>IP相关统计<br>
+统计IP访问量（独立ip访问数量）</p>
+<p>awk '{print $1}' access.log | sort -n | uniq | wc -l<br>
+查看某一时间段的IP访问量(4-5点)</p>
+<p>grep &quot;07/Apr/2017:0[4-5]&quot; access.log | awk '{print $1}' | sort | uniq -c| sort -nr | wc -l<br>
+查看访问最频繁的前100个IP</p>
+<p>awk '{print $1}' access.log | sort -n |uniq -c | sort -rn | head -n 100<br>
+查看访问100次以上的IP</p>
+<p>awk '{print $1}' access.log | sort -n |uniq -c |awk '{if($1 &gt;100) print $0}'|sort -rn<br>
+查询某个IP的详细访问情况,按访问频率排序</p>
+<p>grep '127.0.01' access.log |awk '{print $7}'|sort |uniq -c |sort -rn |head -n 100<br>
+页面访问统计<br>
+查看访问最频的页面(TOP100)</p>
+<p>awk '{print $7}' access.log | sort |uniq -c | sort -rn | head -n 100<br>
+查看访问最频的页面([排除php页面】(TOP100)</p>
+<p>grep -v &quot;.php&quot;  access.log | awk '{print $7}' | sort |uniq -c | sort -rn | head -n 100<br>
+查看页面访问次数超过100次的页面</p>
+<p>cat access.log | cut -d ' ' -f 7 | sort |uniq -c | awk '{if ($1 &gt; 100) print $0}' | less<br>
+查看最近1000条记录，访问量最高的页面</p>
+<p>tail -1000 access.log |awk '{print $7}'|sort|uniq -c|sort -nr|less<br>
+每秒请求量统计<br>
+统计每秒的请求数,top100的时间点(精确到秒)</p>
+<p>awk '{print $4}' access.log |cut -c 14-21|sort|uniq -c|sort -nr|head -n 100<br>
+每分钟请求量统计<br>
+统计每分钟的请求数,top100的时间点(精确到分钟)</p>
+<p>awk '{print $4}' access.log |cut -c 14-18|sort|uniq -c|sort -nr|head -n 100<br>
+每小时请求量统计<br>
+统计每小时的请求数,top100的时间点(精确到小时)</p>
+<p>awk '{print <span class='katex-error' title='ParseError: KaTeX parse error: Expected &#039;EOF&#039;, got &#039;}&#039; at position 2: 4}̲&#039; access.log |c…'>4}&#039; access.log |cut -c 14-15|sort|uniq -c|sort -nr|head -n 100
+性能分析
+在nginx log中最后一个字段加入</span>request_time</p>
+<p>列出传输时间超过 3 秒的页面，显示前20条</p>
+<p>cat access.log|awk '($NF &gt; 3){print $7}'|sort -n|uniq -c|sort -nr|head -20<br>
+列出php页面请求时间超过3秒的页面，并统计其出现的次数，显示前100条</p>
+<p>cat access.log|awk '($NF &gt; 1 &amp;&amp;  $7~/.php/){print $7}'|sort -n|uniq -c|sort -nr|head -100<br>
+蜘蛛抓取统计<br>
+统计蜘蛛抓取次数</p>
+<p>grep 'Baiduspider' access.log |wc -l<br>
+统计蜘蛛抓取404的次数</p>
+<p>grep 'Baiduspider' access.log |grep '404' | wc -l<br>
+TCP连接统计<br>
+查看当前TCP连接数</p>
+<p>netstat -tan | grep &quot;ESTABLISHED&quot; | grep &quot;:80&quot; | wc -l<br>
+用tcpdump嗅探80端口的访问看看谁最高</p>
+<p>tcpdump -i eth0 -tnn dst port 80 -c 1000 | awk -F&quot;.&quot; '{print $1&quot;.&quot;$2&quot;.&quot;$3&quot;.&quot;$4}' | sort | uniq -c | sort -nr</p>
+
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://github.com/post/httpblogfatediercomabout/">
+              <h3 class="post-title">
+                http://blog.fatedier.com/about/
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://github.com/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
